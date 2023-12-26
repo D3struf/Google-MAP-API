@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps</title>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="./src/style.css" />
+    <script type="module" src="./src/script.js"></script>
+</head>
+<body>
+    <section id="MAP-API">
+        <div id="map-container" class="search-transition pan-transition">
+            <div id="map"></div>
+
+            <!-- For Search Query -->
+            <input id="search-input" type="text" placeholder="Search...">
+        </div>
+    
+        <div id="submit-container">
+            <!-- For Submit Button -->
+            <h1>SUBMIT LOCATION</h1>
+            <button id="submit">Submit Location</button>
+            <p id="demo"></p>
+        </div>
+    </section>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfomewWFljFVWVaO1zobr8O-ozK9516eI&libraries=places" async defer></script>
+
+    
+
+    <!-- <script>
+        (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+        ({key: "AIzaSyBfomewWFljFVWVaO1zobr8O-ozK9516eI", v: "weekly"});
+    </script> -->
+</body>
+</html>
