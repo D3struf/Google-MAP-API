@@ -1,5 +1,5 @@
 // Initialize and add the map
-let map;
+var map;
 var marker;
 var lastClickedMarker;
 var submittedLocation = {
