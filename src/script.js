@@ -4,7 +4,8 @@ var marker;
 var lastClickedMarker;
 var submittedLocation = {
     coords: "",
-    place: ""
+    address: "",
+    name: ""
 };
 
 async function initMap() {
@@ -79,18 +80,18 @@ async function initMap() {
             //     lng: lng
             // }
             // console.log(places[0].geometry.location);
-            // submittedLocation = {
-            //     coords: clickedLocation,
-            //     address: place.formatted_address,
-            //     name: place.name
-            // };
+            submittedLocation = {
+                coords: place.geometry.location,
+                address: place.formatted_address,
+                name: place.name
+            };
         });
         // console.log(lastClickedMarker.position);
-        submittedLocation = {
-            coords: places[0].geometry.location,
-            address: places[0].formatted_address,
-            name: places[0].name
-        };
+        // submittedLocation = {
+        //     coords: places[0].geometry.location,
+        //     address: places[0].formatted_address,
+        //     name: places[0].name
+        // };
 
         // Center the map on the first result
         map.setCenter(places[0].geometry.location);
@@ -125,7 +126,7 @@ async function initMap() {
 
                 placesService.getDetails({ placeId: placeId }, function (place) {
                     const placeName = place.name;
-                    console.log("Place Name " + placeName);
+                    // console.log("Place Name " + placeName);
 
                     // Create a new marker at the clicked location with the place name as the title
                     lastClickedMarker = new google.maps.Marker({
@@ -163,18 +164,23 @@ async function initMap() {
     document.getElementById('submit').addEventListener('click', function() {
         submitButton();
     });
+
+    function submitButton() {
+        console.log("Submitted Location:", submittedLocation);
+        // console.log("Name: " + submittedLocation.name.address);
+        var {lat, lng} = submittedLocation.coords;
+    
+        document.getElementById("demo").innerHTML =
+        "Location: " + submittedLocation.address + " | " + submittedLocation.name;
+        console.log("Location: Latitude: " + lat + " Longitude: " + lng + " | " + submittedLocation.address  + " | " + submittedLocation.name);
+    }
 }
 
+window.onload = function() {
+    initMap();
+};
 
-
-function submitButton() {
-    console.log("Submitted Location:", submittedLocation);
-    // console.log("Name: " + submittedLocation.name.address);
-    var {lat, lng} = submittedLocation.coords;
-
-    document.getElementById("demo").innerHTML =
-    "Location: " + submittedLocation.address + " | " + submittedLocation.name;
-    console.log("Location: Latitude: " + lat + " Longitude: " + lng + " | " + submittedLocation.address  + " | " + submittedLocation.name);
-}
-
-initMap();
+// if (window.google && google.maps) {
+//     initMap();
+// }
+// initMap();
